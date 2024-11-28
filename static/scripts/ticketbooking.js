@@ -131,11 +131,10 @@ function getSeatMap(venueID) {
 function renderSeatMap(seatMap) {
     const seatMapContainer = $('#seatMapContainer');
     seatMapContainer.empty();
-
+    
     // Calculate SVG dimensions
     const svgWidth = 40 + (seatMap[0].length * 40); 
-    const svgHeight = 40 + (seatMap.length * 40);
-
+    const svgHeight = 40 + (seatMap.length * 40) + 100; // 增加高度用于区域图
 
     const svg = $(document.createElementNS('http://www.w3.org/2000/svg', 'svg'));
     svg.attr('width', svgWidth);
@@ -143,32 +142,88 @@ function renderSeatMap(seatMap) {
 
     // Adding the 'Stage' label
     const stage = $(document.createElementNS('http://www.w3.org/2000/svg', 'rect'));
-    stage.attr({ x: 0, y: 0, width: svgWidth-30, height: 30, fill: 'grey' });
+    stage.attr({ x: 0, y: 0, width: svgWidth - 30, height: 30, fill: 'grey' });
     svg.append(stage);
 
     const stageText = $(document.createElementNS('http://www.w3.org/2000/svg', 'text'));
-    stageText.attr({ x: svgWidth/2-30, y: 20, fill: 'white' }).text('Stage');
+    stageText.attr({ x: svgWidth / 2 - 30, y: 20, fill: 'white' }).text('Stage');
     svg.append(stageText);
 
-    seatMap.forEach((row, rowIndex) => {
+    // Render the area map (区域图)
+    const areaPolygons = [
+        { points: "30,20 570,20 600,50 600,350 570,380 30,380 0,350 0,50", fill: "white", stroke: "black" },
+        { points: "50,20 170,20 150,70 70,70", dataArea: "N1" },
+        { points: "180,20 260,20 240,70 160,70", dataArea: "N2" },
+        { points: "270,20 330,20 350,70 250,70", dataArea: "N3" },
+        { points: "340,20 420,20 440,70 360,70", dataArea: "N4" },
+        { points: "430,20 550,20 530,70 450,70", dataArea: "N5" },
+        { points: "50,380 170,380 150,330 70,330", dataArea: "S1" },
+        { points: "180,380 260,380 240,330 160,330", dataArea: "S2" },
+        { points: "270,380 330,380 350,330 250,330", dataArea: "S3" },
+        { points: "340,380 420,380 440,330 360,330", dataArea: "S4" },
+        { points: "430,380 550,380 530,330 450,330", dataArea: "S5" },
+        { points: "0,80 60,80 40,280 0,280", dataArea: "W1" },
+        { points: "0,290 60,290 40,340 0,340", dataArea: "W2" },
+        { points: "600,80 540,80 560,280 600,280", dataArea: "E1" },
+        { points: "600,290 540,290 560,340 600,340", dataArea: "E2" }
+    ];
 
+    // Adding area polygons and labels
+    areaPolygons.forEach((polygon) => {
+        const areaPolygon = $(document.createElementNS('http://www.w3.org/2000/svg', 'polygon'));
+        areaPolygon.attr({
+            points: polygon.points,
+            fill: polygon.fill || 'grey',
+            stroke: polygon.stroke || 'black',
+            'data-area': polygon.dataArea
+        });
+        svg.append(areaPolygon);
+    });
+
+    // Adding area labels
+    const areaLabels = [
+        { x: 110, y: 40, text: 'N1' },
+        { x: 200, y: 40, text: 'N2' },
+        { x: 300, y: 40, text: 'N3' },
+        { x: 400, y: 40, text: 'N4' },
+        { x: 490, y: 40, text: 'N5' },
+        { x: 110, y: 355, text: 'S1' },
+        { x: 200, y: 355, text: 'S2' },
+        { x: 300, y: 355, text: 'S3' },
+        { x: 400, y: 355, text: 'S4' },
+        { x: 490, y: 355, text: 'S5' },
+        { x: 30, y: 180, text: 'W1' },
+        { x: 30, y: 310, text: 'W2' },
+        { x: 570, y: 180, text: 'E1' },
+        { x: 570, y: 310, text: 'E2' },
+        { x: 300, y: svgHeight - 20, text: 'Please select a zone first' }
+    ];
+
+    areaLabels.forEach((label) => {
+        const text = $(document.createElementNS('http://www.w3.org/2000/svg', 'text'));
+        text.attr({ x: label.x, y: label.y, fill: 'black' }).text(label.text);
+        svg.append(text);
+    });
+
+    // Render the seat map (座位图)
+    seatMap.forEach((row, rowIndex) => {
         // Adding the row label
         const rowLabel = $(document.createElementNS('http://www.w3.org/2000/svg', 'text'));
-        rowLabel.attr({ x: 0, y: 70 + rowIndex * 40, fill: 'black' }).text(rowIndex + 1);
+        rowLabel.attr({ x: 0, y: 70 + rowIndex * 40 + 30, fill: 'black' }).text(rowIndex + 1);
         svg.append(rowLabel);
 
         row.forEach((seat, seatIndex) => {
             // Column label (only for the first row)
             if (rowIndex === 0) {
                 const colLabel = $(document.createElementNS('http://www.w3.org/2000/svg', 'text'));
-                colLabel.attr({ x: 20 + seatIndex * 40, y: 45, fill: 'black' }).text(seatIndex + 1);
+                colLabel.attr({ x: 20 + seatIndex * 40, y: 45 + 30, fill: 'black' }).text(seatIndex + 1);
                 svg.append(colLabel);
             }
 
             const rect = $(document.createElementNS('http://www.w3.org/2000/svg', 'rect'));
             rect.attr({
                 x: 10 + seatIndex * 40, // Adjust x position
-                y: 50 + rowIndex * 40, // Adjust y position
+                y: 50 + rowIndex * 40 + 30, // Adjust y position to accommodate the area map
                 width: 30,
                 height: 30,
                 fill: getSeatColor(rowIndex, seat),
@@ -178,7 +233,7 @@ function renderSeatMap(seatMap) {
             });
 
             rect.on('click', function() {
-                if(seat === 1) return; // Skip if seat is taken
+                if (seat === 1) return; // Skip if seat is taken
 
                 // Update the selected seat info display
                 selectedSeatRow = rowIndex + 1;
@@ -192,7 +247,6 @@ function renderSeatMap(seatMap) {
                 $('#selectedSeatInfo').text(`Selected Seat: Row ${rowIndex + 1}, Seat ${seatIndex + 1}`);
                 updateTicketTypeAndPrice(rowIndex);
             });
-        
 
             svg.append(rect);
         });
