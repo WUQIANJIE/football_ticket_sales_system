@@ -1,7 +1,7 @@
 // WU Qianjie & WANG Kaiyuan
 import client from './dbclient.js';
 
-const dbName = "eie4432_concert_db";
+const dbName = "eie4432_project_db";
 
 async function insert_event(eventIDIn, datetime, title, venueIDIn, description, image, pricesIn, statusIN) {
   try {

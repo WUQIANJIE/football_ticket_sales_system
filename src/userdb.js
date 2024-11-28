@@ -4,7 +4,7 @@ import client from './dbclient.js';
 import crypto from 'crypto';
 
 
-const dbName = "eie4432_concert_db"
+const dbName = "eie4432_project_db"
 
 async function sha256(input) {
   // Ensure input is a string

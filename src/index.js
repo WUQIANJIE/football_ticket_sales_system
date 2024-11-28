@@ -10,39 +10,36 @@ import events from './events.js';
 import venues from './venues.js';
 import user from './user.js';
 import order from './order.js';
-import { fileURLToPath } from 'url';
 
 const app = express();
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
 
-app.use(
+app.use(   
   session({
-    secret: 'eie4432_group_project',
-    resave: false,
-    saveUninitialized: false,
-    store: mongostore.create({
-      client,
-      dbName: 'eie4432_concert_db',
-      collectionName: 'session',
+    secret: 'eie4432_group_project',     
+    resave: false,     
+    saveUninitialized: false, 
+    store: mongostore.create({       
+      client,       
+      dbName: 'eie4432_project_db',
+      collectionName: 'session',     
     }),
-  })
+  }) 
 );
 
 // First time access: http://127.0.0.1:8080/?authkey=eie4432davidmike
 const PREAUTH_KEY = 'eie4432davidmike';
 app.use((req, res, next) => {
-  if (!req.session?.allow_access) {
-    if (req.query?.authkey === PREAUTH_KEY) {
-      req.session.allow_access = true;
-    } else {
-      res.status(401).json({
-        status: 'failed',
-        message: 'Unauthorized',
-      });
+    if (!req.session?.allow_access) {
+        if (req.query?.authkey === PREAUTH_KEY) {
+            req.session.allow_access = true;
+        } else {
+            res.status(401).json({
+                status: 'failed',
+                message: 'Unauthorized'
+            });
+        }
     }
-  }
-  next();
+    next();
 });
 
 // For login related APIs
@@ -62,6 +59,7 @@ app.use('/user', user);
 
 // For order related APIs
 app.use('/order', order);
+
 
 app.get('/', (req, res, next) => {
   res.redirect('/index.html');

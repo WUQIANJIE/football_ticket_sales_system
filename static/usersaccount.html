@@ -1,109 +1,91 @@
 <!-- WU Qianjie & WANG Kaiyuan -->
-<!doctype html>
+<!DOCTYPE html>
 <html data-bs-theme="light" lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
-    <title>User Account | Concert Ticket Selling System</title>
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
-      crossorigin="anonymous" />
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-      crossorigin="anonymous"></script>
-    <script
-      src="https://code.jquery.com/jquery-3.7.1.min.js"
-      integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
-      crossorigin="anonymous"></script>
-    <script src="./scripts/usersaccount.js"></script>
-    <style>
-      body {
-        font-family: 'Verdana', sans-serif;
-      }
-      nav {
-        font-family: 'Impact', sans-serif;
-      }
-      footer {
-        font-family: 'Optima', sans-serif;
-      }
-    </style>
-  </head>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+        <title>User Account | Concert Ticket Selling System</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+        <script src="./scripts/jquery-3.7.1.min.js"></script>
+        <script src="./scripts/usersaccount.js"></script>
+        <style>
+            body {
+              font-family: 'Verdana', sans-serif;
+            }
+            nav {
+              font-family: 'Impact', sans-serif;
+            }
+            .card {
+                font-family: 'Futura', sans-serif;
+            }
+            .nav-link {
+                color:rgb(0, 0, 0);
+            }
+            .active {
+                color:rgb(255, 71, 71);
+                font-weight: bold;
+            }
+            footer {
+              font-family: 'Optima', sans-serif;
+            }
+        </style>
+    </head>
 
-  <body>
-    <nav
-      class="navbar navbar-expand-lg"
-      style="background: rgb(0, 0, 0); box-shadow: 0px 0px 2px 2px var(--bs-navbar-disabled-color)">
-      <div class="container-fluid mx-lg-5 my-2">
-        <a class="navbar-brand ms-lg-5 bs-light" href="./" style="color: rgb(255, 255, 255)">
-          Football Ticket Sales System
-        </a>
-        <button
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarScroll"
-          class="navbar-toggler"
-          type="button"
-          aria-controls="navbarScroll"
-          aria-expanded="false"
-          aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarScroll">
-          <ul class="navbar-nav me-auto my-2 my-lg-0" style="--bs-scroll-height: 100px">
-            <li class="nav-item">
-              <a class="nav-link link-danger fw-bold ms-lg-5" aria-current="page" href="./index.html">Home</a>
-            </li>
-            <li class="nav-item"><a class="nav-link link-light" href="./events.html">Events</a></li>
-            <li class="nav-item"></li>
-          </ul>
-          <form class="d-flex me-lg-3 d-none" role="search">
-            <input class="form-control me-2" type="search" aria-label="Search" placeholder="Search" /><button
-              class="btn btn-outline-primary"
-              type="submit">
-              Search
-            </button>
-          </form>
-          <form class="d-flex mx-lg-5 mt-3 mt-lg-0" role="login" action="./account-page.html">
-            <button class="btn btn-danger" type="submit" id="loginButton">Account</button>
-          </form>
-        </div>
-      </div>
-    </nav>
+    <body>
+        <nav class="navbar navbar-expand-lg bg-body-light" style="background:rgb(0, 0, 0);box-shadow:0px 0px 2px 2px var(--bs-navbar-disabled-color);">
+            <div class="container-fluid mx-lg-5 my-2">
+                <a class="navbar-brand ms-lg-5 bs-light" href="./" style="color: rgb(255, 255, 255)"> Football Ticket Sales System </a>
+                <button data-bs-toggle="collapse" data-bs-target="#navbarScroll" class="navbar-toggler" type="button" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navbarScroll">
+                    <ul class="navbar-nav me-auto my-2 my-lg-0" style="--bs-scroll-height:100px;">
+                        <li class="nav-item">
+                            <a class="nav-link link-danger fw-bold ms-lg-5" aria-current="page" href="./index.html">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link link-light" href="./events.html">Events</a>
+                        </li>
+                    </ul>
+                    <form class="d-flex me-lg-3 d-none" role="search">
+                        <input class="form-control me-2" type="search" aria-label="Search" placeholder="Search">
+                        <button class="btn btn-outline-primary" type="submit">Search</button>
+                    </form>
+                    <form class="d-flex mx-lg-5 mt-3 mt-lg-0" role="logout">
+                        <button class="btn btn-danger" type="button" id="logoutButton">Logout</button>
+                    </form>
+                </div>
+            </div>
+        </nav>
 
-    <div class="container mt-5">
-      <div class="row d-flex">
-        <div class="col-lg-3 col-12">
-          <div class="card mb-4">
-            <h3 class="card-header text-center">User Profile</h3>
-            <div class="card-body">
-              <form id="loginForm">
-                <!-- <div class="mb-3 no-update">
+        <div class="container mt-5">
+            <div class="row d-flex">
+                <div class="col-lg-3 col-12">
+                    <div class="card mb-4 bg-dark">
+                        <h1 class="card-header text-center text-danger">User Profile</h1>
+                        <div class="card-body text-white">
+                            <form id="loginForm">
+                                <!-- <div class="mb-3 no-update">
                                     <label for="profileImage" class="form-label">Profile Image:</label><br>
                                     <img src="https://psc2.cf2.poecdn.net/05fcf3f8505581fbf7e924e969db5330bd1fe902/_next/static/media/chatGPTAvatar.04ed8443.png" class="picture-src justify-content-end w-25" id="uploadPictureImage" title="">
                                 </div> -->
-                <div class="mb-3 yes-update">
-                  <label for="profileImage" class="form-label">Profile Image:</label><br />
-                  <img class="picture-src justify-content-end w-25" id="profileImage" title="" src="#" />
-                  <input type="file" id="image" class="form-control" name="image" />
-                  <img
-                    id="previewImage"
-                    class="picture-src justify-content-end w-25"
-                    src="#"
-                    alt="Image preview"
-                    style="max-width: 100%; height: auto; display: none" />
-                </div>
-                <div class="mb-3 no-update">
-                  <label for="username" class="form-label">User Name:</label>
-                  <input type="text" class="form-control" id="username" name="username" disabled />
-                </div>
+                                <div class="mb-3 yes-update">
+                                    <label for="profileImage" class="form-label">Profile Image:</label><br>
+                                    <img class="picture-src justify-content-end w-25" id="profileImage" title="" src="#">
+                                    <input type="file" id="image" class="form-control" name="image">
+                                    <img id="previewImage" class="picture-src justify-content-end w-25" src="#" alt="Image preview" style="max-width: 100%; height: auto; display: none;"/>
+                                </div>
+                                <div class="mb-3 no-update">
+                                    <label for="username" class="form-label">User Name:</label>
+                                    <input type="text" class="form-control" id="username" name="username" disabled>
+                                </div>
 
-                <div class="mb-3 yes-update d-none">
-                  <label for="username" class="form-label">User ID:</label>
-                  <div class="alert alert-light alert-dismissible py-1" role="alert" id="username"></div>
-                </div>
-                <!-- <div class="d-grid mb-3 no-update" id="hiddenPassword">
+                                <div class="mb-3 yes-update d-none">
+                                    <label for="username" class="form-label">User ID:</label>
+                                    <div class="alert alert-danger alert-dismissible py-1" role="alert" id="username">
+                                        
+                                    </div>
+                                </div>
+                                <!-- <div class="d-grid mb-3 no-update" id="hiddenPassword">
                                     <label for="password" class="form-label">Password:</label>
                                     <div class="input-group">
                                         <span class="input-group-text" id="basic-addon1">
@@ -132,41 +114,41 @@
                                         </div>     
                                     </div>
                                 </div> -->
-                <div class="mb-3 yes-update">
-                  <label for="password" class="form-label">Password:</label>
-                  <input type="password" class="form-control" id="password" name="password" />
-                </div>
-                <div class="mb-3 yes-update">
-                  <div class="alert alert-primary alert py-1" id="passwordMessage" role="alert">
-                    <ul class="my-1">
-                      <li id="length">8 characters minimum</li>
-                      <li id="upper">1 uppercase letter</li>
-                      <li id="lower">1 lowercase letter</li>
-                      <li id="numsym">1 number or symbol</li>
-                    </ul>
-                  </div>
-                </div>
-                <div class="mb-3 yes-update">
-                  <label for="confirmPassword" class="form-label">Confirm Password:</label>
-                  <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" />
-                </div>
-                <div id="passwordCheck"></div>
-                <div class="mb-3 no-update">
-                  <label for="emailInput" class="form-label">Email Address:</label>
-                  <input type="text" class="form-control" id="email" name="email" />
-                </div>
-                <div class="mb-3 no-update">
-                  <label for="lastName" class="form-label">Nickname:</label>
-                  <input type="text" class="form-control" id="nickname" name="nickname" />
-                </div>
-                <div class="gender mb-2">
-                  <label for="gender">Gender:</label>
-                  <input type="text" class="form-control" id="gender" name="gender" readonly disabled />
-                </div>
-                <div class="dob mb-2">
-                  <label for="dob">Date of Birth:</label>
-                  <input type="text" class="form-control" id="dob" name="dob" readonly disabled />
-                  <!-- <div class="select-container mt-1 row row-cols-2">
+                                <div class="mb-3 yes-update">
+                                    <label for="password" class="form-label">Password:</label>
+                                    <input type="password" class="form-control" id="password" name="password">
+                                </div>
+                                <div class="mb-3 yes-update" >
+                                    <div class="alert alert-danger alert py-1" id="passwordMessage" role="alert">
+                                        <ul class="my-1">
+                                            <li id="length">8 characters minimum</li>
+                                            <li id="upper">1 uppercase letter</li>
+                                            <li id="lower">1 lowercase letter</li>
+                                            <li id="numsym">1 number or symbol</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="mb-3 yes-update">
+                                    <label for="confirmPassword" class="form-label">Confirm Password:</label>
+                                    <input type="password" class="form-control" id="confirmPassword" name="confirmPassword">
+                                </div>
+                                <div id="passwordCheck"></div>
+                                <div class="mb-3 no-update">
+                                    <label for="emailInput" class="form-label">Email Address:</label>
+                                    <input type="text" class="form-control" id="email" name="email">
+                                </div>
+                                <div class="mb-3 no-update">
+                                    <label for="lastName" class="form-label">Nickname:</label>
+                                    <input type="text" class="form-control" id="nickname" name="nickname">
+                                </div>
+                                <div class="gender mb-2">
+                                    <label for="gender">Gender:</label>
+                                    <input type="text" class="form-control" id="gender" name="gender" readonly disabled>
+                                </div>
+                                <div class="dob mb-2">
+                                    <label for="dob">Date of Birth:</label>
+                                    <input type="text" class="form-control" id="dob" name="dob" readonly disabled>
+                                    <!-- <div class="select-container mt-1 row row-cols-2">
                                         <div class = "col d-flex">
                                             <div class="alert alert-light alert-dismissible text-center py-1" id="dobMonth">
                                                 Jan
@@ -178,75 +160,81 @@
                                             </div>
                                         </div>
                                     </div> -->
-                </div>
-                <div class="d-flex justify-content-end gap-2 no-update">
-                  <button type="submit" name="update" class="btn btn-warning" id="updateButton">Update</button>
-                </div>
-                <!-- <div class="d-flex justify-content-end gap-2 yes-update d-none">
+                                </div>
+                                <div class="d-flex justify-content-end gap-2 no-update">
+                                    <button type="submit" name="update" class="btn btn-danger" id="updateButton">Update</button>
+                                </div>
+                                <!-- <div class="d-flex justify-content-end gap-2 yes-update d-none">
                                     <button type="button" name="save" class="btn btn-warning" id="saveButton">Save</button>
                                     <button type="reset" name="reset" class="btn btn-warning" id="resetButton">Reset</button>
                                     <button type="button" name="cancel" class="btn btn-warning" id="cancelButton">Cancel</button>
                                 </div> -->
-                <script></script>
-              </form>
+                                <script>
+
+                                </script>
+                            </form>
+                        </div>
+                    
+                    </div>
+                </div>
+            
+                <div class="col-lg-9 col-12">
+                    <div class="card">
+                        <h3 class="card-header text-center">Transactions</h3>
+                        
+                        <div class="text-center" id="cancelledCount"></div>
+                        
+                        <div class="card col">
+                            <table class="table text-center">
+                                <thead>
+                                <tr>                                
+                                    <th scope="col">Event Title</th>
+                                    <th scope="col">Venue</th>
+                                    <th scope="col">Date</th>
+                                    <th scope="col">Seat</th>
+                                    <th scope="col">Price</th>
+                                    <th scope="col">Transaction Time</th>
+                                </tr>
+                                </thead>
+                                <tbody id="transaction-table">
+                                                      
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
+
         </div>
-
-        <div class="col-lg-9 col-12">
-          <div class="card">
-            <h3 class="card-header text-center">Transactions</h3>
-
-            <div class="text-center" id="cancelledCount"></div>
-
-            <div class="card col">
-              <table class="table text-center">
-                <thead>
-                  <tr>
-                    <th scope="col">Event Title</th>
-                    <th scope="col">Venue</th>
-                    <th scope="col">Date</th>
-                    <th scope="col">Seat</th>
-                    <th scope="col">Price</th>
-                    <th scope="col">Transaction Time</th>
-                  </tr>
-                </thead>
-                <tbody id="transaction-table"></tbody>
-              </table>
-            </div>
-          </div>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+    </body>
+    <footer class="footer fixed-bottom bg-dark text-center">
+        <div class="container text-muted py-4 py-lg-3">
+            <p class="mb-0 text-white">© 2024 WU Qianjie & WANG Kaiyuan All rights reserved</p>
+          <span id="time" class="text-white"></span>
         </div>
-      </div>
-    </div>
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <footer class="footer fixed-bottom bg-dark text-white text-center py-2">
-      <div>
-        <span>© 2024 WU Qianjie & WANG Kaiyuan All rights reserved</span><br />
-        <span class="system-date-time" id="system-date-time"></span>
-      </div>
     </footer>
     <script>
-      function updateSystemDateTime() {
-        const now = new Date();
-        const options = {
-          year: 'numeric',
-          month: '2-digit',
-          day: '2-digit',
-          hour: '2-digit',
-          minute: '2-digit',
-          second: '2-digit',
-          hour12: true,
-        };
-        const dateTimeString = now.toLocaleString('en-US', options);
-        document.getElementById('system-date-time').innerText = dateTimeString;
-      }
-      setInterval(updateSystemDateTime, 1000);
-      updateSystemDateTime();
+        function updateSystemDateTime() {  
+            const now = new Date();  
+            const options = {  
+                year: 'numeric',
+                month: '2-digit',
+                day: '2-digit',
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit', 
+                hour12: true,  
+            };
+            const dateTimeString = now.toLocaleString('en-US', options);
+            document.getElementById('time').innerText = dateTimeString;  
+        }
+        setInterval(updateSystemDateTime, 1000);  
+        updateSystemDateTime();
     </script>
-  </body>
 </html>
