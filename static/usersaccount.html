@@ -1,4 +1,4 @@
-<!-- WU Qianjie & WANG Kaiyuan -->
+<!-- WU Qianjie 22102977D & WANG Kaiyuan 22101552D -->
 <!DOCTYPE html>
 <html data-bs-theme="light" lang="en">
     <head>
@@ -12,13 +12,131 @@
         <style>
             body {
               font-family: 'Verdana', sans-serif;
+              background-color: #000;
             }
+            nav {
+              font-family: 'Impact', sans-serif;
+            }
+            footer {
+              font-family: 'Optima', sans-serif;
+            }
+            header.author {
+                  font-size: 0.35em;
+                  padding: 0px;
+                  top: 0%;
+                  color:violet
+              }
+      
+              .box_centre{
+                  margin: auto;
+                  width: 50%;
+                  text-align: center;
+                  align-items: center;
+                  padding: 35px;
+      
+              }
+      
+      
+              header {
+              position: fixed;
+              top: 0;
+              left: 0;
+              width: 100%;
+              height: 10%; /* 设置导航栏高度 */
+              display: flex; /* 使用 flexbox 布局 */
+              align-items: center; /* 垂直居中导航栏的内容 */
+              justify-content: space-between; /* 左右两侧内容分开 */
+              padding: 5px 25px;
+              z-index: 1000;
+              border-bottom-left-radius: 15px;
+              border-bottom-right-radius: 15px;
+              transition: 0.6s;
+          }
+      
+          header.sticky {
+              background-color: rgb(255, 255, 255, 0.65);
+              -webkit-backdrop-filter: blur(10px);
+              backdrop-filter: blur(5px);
+          }
+      
+          /* logo-container 样式 */
+          header .logo-container {
+              display: flex; /* 使用 flexbox 布局 */
+              align-items: center; /* logo 和标题垂直居中 */
+          }
+      
+          /* Logo 样式 */
+          header .logo {
+              width: 31.5px; /* logo 的宽度 */
+              height: auto; /* 自动调整高度 */
+              margin-right: 30px; /* logo 和标题之间的间距 */
+          }
+      
+          /* 标题样式 */
+          header .platform-title {
+              font-family: 'Impact', sans-serif;
+              font-size: 1.2rem;
+              color: white;
+          }
+      
+          header.sticky .platform-title {
+              color: black; /* 滑动时标题变色 */
+          }
+      
+          /* 导航菜单样式 */
+          header ul {
+              display: flex; /* 使用 flexbox 布局 */
+              align-items: center; /* 菜单项与标题垂直居中 */
+              margin: 0;
+              padding: 0;
+              list-style: none; /* 移除默认列表样式 */
+          }
+      
+          header ul li {
+              margin-right: 20px; /* 菜单项之间的间距 */
+          }
+      
+          header ul li a {
+              text-decoration: none;
+              color: white;
+              font-size: 1rem;
+              font-weight: 500;
+              transition: color 0.3s ease;
+          }
+      
+          header ul li a:hover {
+              color: #000; /* 鼠标悬停时变色 */
+          }
+      
+          header.sticky ul li a {
+              color: black; /* 滑动时菜单项变色 */
+          }
+      
+          /* Account 按钮样式 */
+          header ul li .btn {
+              background-color: pink;
+              color: black;
+              padding: 5px 10px;
+              border-radius: 5px;
+              font-weight: bold;
+          }
+      
+          header ul li .btn:hover {
+            background-color: #f0d4d4;
+          }
+          label{
+            color:white;
+          }
+          p{
+            color: white;
+          }
             nav {
               font-family: 'Impact', sans-serif;
             }
             .card {
                 font-family: 'Futura', sans-serif;
             }
+
             .nav-link {
                 color:rgb(0, 0, 0);
             }
@@ -33,35 +151,29 @@
     </head>
 
     <body>
-        <nav class="navbar navbar-expand-lg bg-body-light" style="background:rgb(0, 0, 0);box-shadow:0px 0px 2px 2px var(--bs-navbar-disabled-color);">
-            <div class="container-fluid mx-lg-5 my-2">
-                <a class="navbar-brand ms-lg-5 bs-light" href="./" style="color: rgb(255, 255, 255)"> Football Ticket Sales System </a>
-                <button data-bs-toggle="collapse" data-bs-target="#navbarScroll" class="navbar-toggler" type="button" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-                <div class="collapse navbar-collapse" id="navbarScroll">
-                    <ul class="navbar-nav me-auto my-2 my-lg-0" style="--bs-scroll-height:100px;">
-                        <li class="nav-item">
-                            <a class="nav-link link-danger fw-bold ms-lg-5" aria-current="page" href="./index.html">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link link-light" href="./events.html">Events</a>
-                        </li>
-                    </ul>
-                    <form class="d-flex me-lg-3 d-none" role="search">
-                        <input class="form-control me-2" type="search" aria-label="Search" placeholder="Search">
-                        <button class="btn btn-outline-primary" type="submit">Search</button>
-                    </form>
-                    <form class="d-flex mx-lg-5 mt-3 mt-lg-0" role="logout">
-                        <button class="btn btn-danger" type="button" id="logoutButton">Logout</button>
-                    </form>
-                </div>
+        <header>
+            <div class="logo-container">
+                <img src="https://s1.locimg.com/2024/11/25/f44c373f1fd35.png" alt="logo" class="logo">
+                <span class="platform-title">User Center</span>
             </div>
-        </nav>
-
+            <ul>
+                <li><a href="./index.html">Home</a></li>
+                <li><a href="./events.html">Events</a></li>
+                <li>
+                    <form class="d-flex" role="logout">
+                        <button class="btn" type="button" id="logoutButton">Logout</button>
+                    </form>
+                </li>
+            </ul>
+        </header>
+        <br>
+        <br>
+        <br>
         <div class="container mt-5">
             <div class="row d-flex">
                 <div class="col-lg-3 col-12">
                     <div class="card mb-4 bg-dark">
-                        <h1 class="card-header text-center text-danger">User Profile</h1>
+                        <h1 class="card-header text-center" style="color: pink;">User Profile</h1>
                         <div class="card-body text-white">
                             <form id="loginForm">
                                 <!-- <div class="mb-3 no-update">
@@ -161,8 +273,9 @@
                                         </div>
                                     </div> -->
                                 </div>
+                                <br>
                                 <div class="d-flex justify-content-end gap-2 no-update">
-                                    <button type="submit" name="update" class="btn btn-danger" id="updateButton">Update</button>
+                                    <button type="submit" name="update" class="btn" id="updateButton" style="background-color: pink;">Update</button>
                                 </div>
                                 <!-- <div class="d-flex justify-content-end gap-2 yes-update d-none">
                                     <button type="button" name="save" class="btn btn-warning" id="saveButton">Save</button>
@@ -237,4 +350,26 @@
         setInterval(updateSystemDateTime, 1000);  
         updateSystemDateTime();
     </script>
+    <script>
+        // Sticky header functionality
+        window.addEventListener("scroll", function () {
+            var header = document.querySelector("header");
+            header.classList.toggle("sticky", window.scrollY > 0);
+        });
+        
+        // Initialize Smooth Scrollbar
+        document.addEventListener("DOMContentLoaded", function () {
+            SmoothScrollbar.init(document.body);
+        });
+        
+        // Sticky header functionality using Smooth Scrollbar
+        SmoothScrollbar.init(document.body, {
+            damping: 0.1, // Customize the damping (scroll inertia) if you want
+        }).addListener((scrollbar) => {
+            scrollbar.addListener(({ offset }) => {
+                var header = document.querySelector("header");
+                header.classList.toggle("sticky", offset.y > 0);
+            });
+        });
+        </script>
 </html>

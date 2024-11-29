@@ -1,4 +1,4 @@
-// WU Qianjie & WANG Kaiyuan
+// WU Qianjie 22102977D & WANG Kaiyuan 22101552D
 import { Router } from 'express';
 import { fetch_user_orders, add_order_to_user } from './userdb.js';
 import { modify_seat, fetch_seat_map } from './venuedb.js';
@@ -28,14 +28,15 @@ router.get('/:username?', async (req, res) => {
 });
 
 router.post('/placeOrder', async (req, res) => {
-  var { username, eventID, seatRow, seatCol, price } = req.body;
+  var { username, eventID, venueID, seatRow, seatCol, price } = req.body;
   eventID = parseInt(eventID);
   seatRow = parseInt(seatRow);
   seatCol = parseInt(seatCol);
   price = parseInt(price);
+  venueID = parseInt(venueID);
   try {
     // Fetch the current seat map for the venue
-    const seatMap = await fetch_seat_map(eventID);
+    const seatMap = await fetch_seat_map(venueID);
 
     // Check if the selected seat is available
     if (seatMap[seatRow][seatCol] === 1) {
@@ -43,7 +44,7 @@ router.post('/placeOrder', async (req, res) => {
     }
 
     // Update the seat status in the venue's seat map
-    await modify_seat(eventID, seatRow, seatCol, 1);
+    await modify_seat(venueID, seatRow, seatCol, 1);
 
     // Create a new order object
     const newOrder = {

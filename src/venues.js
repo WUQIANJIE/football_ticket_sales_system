@@ -1,4 +1,4 @@
-// WU Qianjie & WANG Kaiyuan
+// WU Qianjie 22102977D & WANG Kaiyuan 22101552D
 import { Router } from 'express';
 import { insert_venue, fetch_venue, update_venue, delete_venue, create_seat_map, modify_seat, get_seat_availability, fetch_seat_map } from './venuedb.js';
 import bodyParser from 'body-parser';

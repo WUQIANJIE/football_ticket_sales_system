@@ -1,4 +1,4 @@
-// WU Qianjie & WANG Kaiyuan
+// WU Qianjie 22102977D & WANG Kaiyuan 22101552D
 import client from './dbclient.js';
 
 const dbName = "eie4432_project_db";
