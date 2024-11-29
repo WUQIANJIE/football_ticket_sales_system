@@ -101,65 +101,74 @@ function getSeatMap(venueID) {
     });
 
 }
-
-// References: https://developer.mozilla.org/en-US/docs/Web/SVG/Scripting
 function renderSeatMap(seatMap) {
     const seatMapContainer = $('#seatMapContainer');
     seatMapContainer.empty();
 
     // Calculate SVG dimensions
-    const svgWidth = 40 + (seatMap[0].length * 40); 
-    const svgHeight = 40 + (seatMap.length * 40);
+    const svgWidth = 55 + (seatMap[0].length * 40); 
+    const svgHeight = 50 + (seatMap.length * 40);
 
-    // Create the main SVG element
+
     const svg = $(document.createElementNS('http://www.w3.org/2000/svg', 'svg'));
     svg.attr('width', svgWidth);
     svg.attr('height', svgHeight);
 
-    // Adding the 'Stage' label
-    const stage = $(document.createElementNS('http://www.w3.org/2000/svg', 'rect'));
-    stage.attr({ x: 0, y: 0, width: svgWidth - 30, height: 30, fill: 'green' });
-    svg.append(stage);
+    // Add the court image in the center
+    const courtImage = $(document.createElementNS('http://www.w3.org/2000/svg', 'image'));
+    const imageWidth = (seatMap[0].length*3/5+1)*40; // Adjust width as needed
+    const imageHeight = (seatMap.length*3/5-1)*40; // Adjust height as needed
+    courtImage.attr({
+        href: 'https://s1.locimg.com/2024/11/22/3dd49d5b0c6ba.png', // 替换为你的图像路径
+        x: 45 + (seatMap[0].length/5-1)*40,
+        y: 70 + (seatMap.length/5)*40, // Y 位置可以根据需要调整
+        width: imageWidth,
+        height: imageHeight,
+        opacity: 0.5 // 可选：设置图片透明度
+    });
+    svg.append(courtImage); // 将图像添加到 SVG
 
-    const stageText = $(document.createElementNS('http://www.w3.org/2000/svg', 'text'));
-    stageText.attr({ x: svgWidth / 2 - 30, y: 20, fill: 'white' }).text('Field');
-    svg.append(stageText);
-
-    // Iterate through the seat map to render rows and seats
     seatMap.forEach((row, rowIndex) => {
         // Adding the row label
         const rowLabel = $(document.createElementNS('http://www.w3.org/2000/svg', 'text'));
-        rowLabel.attr({ x: 0, y: 70 + rowIndex * 40, fill: 'white' }).text(rowIndex + 1);
+        rowLabel.attr({ x: 0, y: 80 + rowIndex * 40, fill: 'white' }).text(rowIndex + 1);
         svg.append(rowLabel);
+        
 
         row.forEach((seat, seatIndex) => {
             // Column label (only for the first row)
             if (rowIndex === 0) {
                 const colLabel = $(document.createElementNS('http://www.w3.org/2000/svg', 'text'));
-                colLabel.attr({ x: 20 + seatIndex * 40, y: 45, fill: 'white' }).text(seatIndex + 1);
+                if(seatIndex < 9){
+                    colLabel.attr({ x: 45 + seatIndex * 40, y: 50, fill: 'white' }).text(seatIndex + 1);
+                }
+                else{
+                    colLabel.attr({ x: 40 + seatIndex * 40, y: 50, fill: 'white' }).text(seatIndex + 1);
+                }
                 svg.append(colLabel);
             }
 
-            // Create a group (`<g>`) for the seat icon
-            const seatGroup = $(document.createElementNS('http://www.w3.org/2000/svg', 'g'));
+             // Create a group (`<g>`) for the seat icon
+             const seatGroup = $(document.createElementNS('http://www.w3.org/2000/svg', 'g'));
 
-            // Scaling factor for 30x30 size
-            const scaleFactor = 30 / 1024;
-
-            seatGroup.attr({
-                transform: `translate(${10 + seatIndex * 40}, ${50 + rowIndex * 40}) scale(${scaleFactor})`,
-                class: 'seat',
-                'data-row': rowIndex,
-                'data-seat': seatIndex
-            });
-
-            // Add the SVG path for the seat icon
-            const seatIcon = $(document.createElementNS('http://www.w3.org/2000/svg', 'path'));
-            seatIcon.attr({
-                d: "M115.968 927.936A112 112 0 0 1 0 816v-512c0-50.88 33.92-93.792 80.32-107.456A192 192 0 0 1 272 16h480a192 192 0 0 1 191.68 180.544A112.064 112.064 0 0 1 1024 304v512a112 112 0 0 1-115.968 111.936A191.744 191.744 0 0 1 752 1008h-480a191.744 191.744 0 0 1-156.032-80.064z",
-                fill: getSeatColor(rowIndex, seat)
-            });
-
+             // Scaling factor for 30x30 size
+             const scaleFactor = 30 / 1024;
+ 
+             seatGroup.attr({
+                 transform: `translate(${35 + seatIndex * 40}, ${60 + rowIndex * 40}) scale(${scaleFactor})`,
+                 class: 'seat',
+                 'data-row': rowIndex,
+                 'data-seat': seatIndex
+             });
+ 
+             // Add the SVG path for the seat icon
+             const seatIcon = $(document.createElementNS('http://www.w3.org/2000/svg', 'path'));
+             if( seatIndex<seatMap[0].length/5-1 || rowIndex<seatMap.length/5 || seatIndex>seatMap[0].length*4/5 || rowIndex>seatMap.length*4/5-1 ){
+                seatIcon.attr({
+                    d: "M115.968 927.936A112 112 0 0 1 0 816v-512c0-50.88 33.92-93.792 80.32-107.456A192 192 0 0 1 272 16h480a192 192 0 0 1 191.68 180.544A112.064 112.064 0 0 1 1024 304v512a112 112 0 0 1-115.968 111.936A191.744 191.744 0 0 1 752 1008h-480a191.744 191.744 0 0 1-156.032-80.064z",
+                    fill: getSeatColor(seatMap,rowIndex,seatIndex,seat)
+                });
+             }
 
             // Append the seat icon to the group
             seatGroup.append(seatIcon);
@@ -169,13 +178,18 @@ function renderSeatMap(seatMap) {
         });
     });
 
-    // Append the SVG to the container
     seatMapContainer.append(svg);
 }
 
-function getSeatColor(rowIndex, seat) {
+
+function getSeatColor(seatMap,rowIndex,seatIndex,seat) {
     if (seat == 1) return 'grey'; // Seat is taken
-    return rowIndex < 2 ? 'pink' : 'white'; 
+    if(seatIndex>=seatMap[0].length/5-2 && rowIndex>=seatMap.length/5-1 && seatIndex<=seatMap[0].length*4/5+1 && rowIndex<=seatMap.length*4/5 ){
+        return 'pink';
+    }
+    else{
+        return 'white';
+    }
 }
 
 function checkSeatAvailabilityBeforeUpdate(venueID, rows, cols) {
@@ -223,11 +237,14 @@ function updateSeatMap(venueID, rows, cols) {
 
 function updateVenue(venueName, rows, cols) {
     // check for at least 40 seats
-    if (rows * cols < 40 || rows < 3 || cols < 3) {
-        alert('A seat map must have at least 40 seats and 3 rows and columns');
+    if (rows * cols < 100 || rows < 10 || cols < 10) {
+        alert('A seat map must have at least 100 seats and 10 rows and 10 columns');
         return;
     }
-
+    if (rows * cols > 600 || rows > 20 || cols > 30) {
+        alert('A seat map must have at most 300 seats and 20 rows and 30 columns');
+        return;
+    }
     var venueID = venueList.length;
     $.ajax({
         url: '/venues',
