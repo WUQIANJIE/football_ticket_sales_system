@@ -26,7 +26,7 @@ app.use(
   }) 
 );
 
-// First time access: http://127.0.0.1:8090/?authkey=wkywqj
+// First time access: http://127.0.0.1:8080/?authkey=wkywqj
 const PREAUTH_KEY = 'wkywqj';
 app.use((req, res, next) => {
     if (!req.session?.allow_access) {
@@ -65,8 +65,8 @@ app.get('/', (req, res, next) => {
   res.redirect('/index.html');
 });
 
-app.listen(8090, () => {
-  console.log(Date() + '\nServer started at http://127.0.0.1:8090');
+app.listen(8080, () => {
+  console.log(Date() + '\nServer started at http://127.0.0.1:8080');
 });
 
 app.use('/', express.static(path.join(process.cwd(), '/static')));
