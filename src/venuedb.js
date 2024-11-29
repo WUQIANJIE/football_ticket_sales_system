@@ -1,4 +1,4 @@
-// WU Qianjie & WANG Kaiyuan
+// WU Qianjie 22102977D & WANG Kaiyuan 22101552D
 import client from './dbclient.js';
 
 const dbName = "eie4432_project_db";
@@ -145,7 +145,6 @@ async function fetch_seat_map(venueID) {
       console.log("Venue not found or seat map is unavailable.");
       return null;
     }
-
     return venue.seatMap;
   } catch (err) {
     console.log("Error fetching seat map:", err);

@@ -1,4 +1,4 @@
-// WU Qianjie & WANG Kaiyuan
+// WU Qianjie 22102977D & WANG Kaiyuan 22101552D
 import express from 'express';
 import login from './login.js';
 import path from 'path';
@@ -26,8 +26,8 @@ app.use(
   }) 
 );
 
-// First time access: http://127.0.0.1:8080/?authkey=eie4432davidmike
-const PREAUTH_KEY = 'eie4432davidmike';
+// First time access: http://127.0.0.1:8080/?authkey=wkywqj
+const PREAUTH_KEY = 'wkywqj';
 app.use((req, res, next) => {
     if (!req.session?.allow_access) {
         if (req.query?.authkey === PREAUTH_KEY) {

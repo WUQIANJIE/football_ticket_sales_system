@@ -1,4 +1,4 @@
-// WU Qianjie & WANG Kaiyuan
+// WU Qianjie 22102977D & WANG Kaiyuan 22101552D
 import { Router } from 'express';
 import { insert_event, fetch_event, update_event, delete_event } from './eventdb.js';
 import bodyParser from 'body-parser';
