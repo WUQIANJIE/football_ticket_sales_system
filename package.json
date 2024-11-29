@@ -23,8 +23,5 @@
     "express-session": "^1.17.3",
     "mongodb": "^6.2.0",
     "multer": "^1.4.5-lts.1"
-  },
-  "engines": {
-    "node": "16.x"
   }
 }
