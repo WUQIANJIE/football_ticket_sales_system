@@ -1,4 +1,4 @@
-// WU Qianjie & WANG Kaiyuan
+// WU Qianjie 22102977D & WANG Kaiyuan 22101552D
 /* eslint-disable no-undef */
 $(document).ready(function() {
     fetch('/auth/me')
