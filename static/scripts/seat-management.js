@@ -170,9 +170,12 @@ function renderSeatMap(seatMap) {
                 });
              }
 
+<<<<<<< HEAD
             seatGroup.on('click', function() {
                 displayUserInfoForSeat(selectedVenueID, rowIndex, seatIndex);
             });
+=======
+>>>>>>> 5020e61a32d30dbcd6e4666e55446f598422fc6a
             // Append the seat icon to the group
             seatGroup.append(seatIcon);
 
